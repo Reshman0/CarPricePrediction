@@ -111,3 +111,13 @@ def visualize_residuals(y_test, y_pred):
     plt.show()
 
 visualize_residuals(y_test, y_pred)
+
+results = gbr_model.staged_predict(X_test)
+test_errors = [mean_squared_error(y_test, y_pred) for y_pred in results]
+
+plt.plot(test_errors, label="Test Error")
+plt.xlabel("Number of Trees")
+plt.ylabel("Mean Squared Error")
+plt.title("Gradient Boosting Performance")
+plt.legend()
+plt.show()
